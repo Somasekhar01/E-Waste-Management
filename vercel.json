@@ -1,13 +1,14 @@
 {
   "version": 2,
+  "buildCommand": "composer install --no-dev --optimize-autoloader && npm ci && npm run build && rm -rf api || true && mkdir api && cp -r public/* api/ && cp public/.htaccess public/robots.txt public/favicon.ico api/ || true",
   "functions": {
-    "public/index.php": {
+    "api/index.php": {
       "runtime": "@vercel/php@0.8.3"
     }
   },
   "rewrites": [{
     "source": "/(.*)",
-    "destination": "/public/index.php"
+    "destination": "/api/index.php"
   }],
   "headers": [{
     "source": "/build/(.*)",
